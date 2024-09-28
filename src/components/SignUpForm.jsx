@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const API_URL = `https://fsa-jwt-practice.herokuapp.com/signup`;
 
-export default function SignUpForm() {
+export default function SignUpForm({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -22,6 +22,7 @@ export default function SignUpForm() {
         }),
       });
       const responseObj = await response.json();
+      setToken(responseObj.token);
       console.log(responseObj);
     } catch (error) {
       setError(error.message);
