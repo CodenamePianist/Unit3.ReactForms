@@ -17,6 +17,7 @@ export default function Authenticate({ token }) {
       });
       const responseObj = await response.json();
       setSuccessMessage(responseObj.message);
+      console.log(responseObj);
     } catch (error) {
       setError(error.message);
     }
@@ -25,7 +26,7 @@ export default function Authenticate({ token }) {
   return (
     <>
       <h2>Authenticate!</h2>
-      {successMessage && <p>{successMessage}</p>}
+      {successMessage && <p>{successMessage} Welcome</p>}
       {error && <p>{error}</p>}
       <button onClick={handleClick}>Authenticate Token</button>
     </>
