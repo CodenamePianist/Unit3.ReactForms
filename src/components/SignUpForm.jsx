@@ -11,6 +11,9 @@ export default function SignUpForm({ setToken }) {
     event.preventDefault();
 
     try {
+      //   if (username.length < 8) {
+      //     throw new Error("Username needs to be 8 characters or more");
+      //   }
       const response = await fetch(API_URL, {
         method: "POST",
         headers: {
@@ -39,6 +42,8 @@ export default function SignUpForm({ setToken }) {
           <input
             type="text"
             name="username"
+            id="username"
+            minLength={8}
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           ></input>
@@ -48,6 +53,9 @@ export default function SignUpForm({ setToken }) {
           <input
             type="password"
             name="password"
+            id="password"
+            required
+            minLength={8}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           ></input>

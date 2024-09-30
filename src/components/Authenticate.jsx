@@ -5,6 +5,7 @@ const API_URL = `https://fsa-jwt-practice.herokuapp.com/authenticate`;
 export default function Authenticate({ token }) {
   const [successMessage, setSuccessMessage] = useState(null);
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
 
   async function handleClick() {
     try {
@@ -18,6 +19,7 @@ export default function Authenticate({ token }) {
       const responseObj = await response.json();
       setSuccessMessage(responseObj.message);
       console.log(responseObj);
+      setUser(responseObj.data.username);
     } catch (error) {
       setError(error.message);
     }
@@ -26,7 +28,11 @@ export default function Authenticate({ token }) {
   return (
     <>
       <h2>Authenticate!</h2>
-      {successMessage && <p>{successMessage}</p>}
+      {successMessage && (
+        <p>
+          {successMessage} Username is {user}.
+        </p>
+      )}
       {error && <p>{error}</p>}
       <button onClick={handleClick}>Authenticate Token</button>
     </>
